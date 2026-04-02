@@ -11,7 +11,6 @@
   <nav>
     <div class="nav-inner">
       <a href="#" class="logo" aria-label="Hightouch">
-        <!-- Hightouch logo mark: large green square (top-right) + small dark square (bottom-left) -->
         <svg width="32" height="28" viewBox="0 0 40 36" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="14" y="0" width="26" height="26" rx="3" fill="#5ecf8e"/>
           <rect x="0" y="18" width="16" height="16" rx="2" fill="#1a1a1a"/>
@@ -19,9 +18,26 @@
         <span class="logo-text">Hightouch</span>
       </a>
       <div class="nav-links">
-        <a href="#q1">Q1</a>
-        <a href="#q2">Q2</a>
-        <a href="#q3">Q3</a>
+        <span class="nav-group-label">Technical</span>
+        <a href="#part1">P1</a>
+        <a href="#part2">P2</a>
+        <a href="#part3">P3</a>
+        <a href="#part4">P4</a>
+        <span class="nav-divider"></span>
+        <span class="nav-group-label">Written</span>
+        <a href="#wq1">Q1</a>
+        <a href="#wq2">Q2</a>
+        <a href="#wq3">Q3</a>
+        <a href="#wq4">Q4</a>
+        <a href="peter-cooper-cv.pdf" download class="nav-cv">Download CV</a>
+        <a href="https://www.linkedin.com/in/peter-s-cooper/" target="_blank" rel="noopener" class="nav-linkedin" aria-label="LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="24" height="24" rx="5" fill="#0A66C2"/>
+            <path d="M7.5 9.5H5V19H7.5V9.5Z" fill="white"/>
+            <circle cx="6.25" cy="6.75" r="1.5" fill="white"/>
+            <path d="M19 19h-2.5v-4.75c0-1.15-.85-2-1.9-2-1.1 0-1.85.9-1.85 2V19H10.25V9.5H12.5v1.1c.55-.85 1.6-1.4 2.7-1.4 2.1 0 3.8 1.7 3.8 3.85V19z" fill="white"/>
+          </svg>
+        </a>
       </div>
     </div>
   </nav>
@@ -31,42 +47,620 @@
       <p class="eyebrow">Takehome Assessment</p>
       <h1>Peter Cooper</h1>
       <p class="subtitle">Responses submitted for review</p>
+      <div class="header-actions">
+        <a href="https://www.linkedin.com/in/peter-s-cooper/" target="_blank" rel="noopener" class="btn btn-linkedin">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="24" height="24" rx="5" fill="white" fill-opacity="0.25"/>
+            <path d="M7.5 9.5H5V19H7.5V9.5Z" fill="white"/>
+            <circle cx="6.25" cy="6.75" r="1.5" fill="white"/>
+            <path d="M19 19h-2.5v-4.75c0-1.15-.85-2-1.9-2-1.1 0-1.85.9-1.85 2V19H10.25V9.5H12.5v1.1c.55-.85 1.6-1.4 2.7-1.4 2.1 0 3.8 1.7 3.8 3.85V19z" fill="white"/>
+          </svg>
+          LinkedIn Profile
+        </a>
+        <a href="peter-cooper-cv.pdf" download class="btn btn-cv">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 16l-5-5h3V4h4v7h3l-5 5z" fill="currentColor"/>
+            <path d="M5 18h14v2H5v-2z" fill="currentColor"/>
+          </svg>
+          Download CV
+        </a>
+      </div>
     </div>
   </header>
 
   <main>
 
-    <section id="q1" class="card">
-      <div class="question-label">Question 1</div>
-      <h2>Question title goes here</h2>
+    <!-- ── TECHNICAL SECTION ─────────────────────────────── -->
+    <div class="section-header">
+      <span class="section-header-label">Technical Assessment</span>
+    </div>
+
+    <!-- Part 1 -->
+    <section id="part1" class="card">
+      <div class="question-label">Part 1</div>
+      <h2>Customer Studio Setup</h2>
       <div class="answer">
-        <p>Your answer goes here. Replace this placeholder text with your actual response to the question.</p>
-        <p>You can add multiple paragraphs, lists, code blocks, or any other content you need.</p>
-        <ul>
-          <li>Point one</li>
-          <li>Point two</li>
-          <li>Point three</li>
-        </ul>
+        <p>I managed to setup the following three tables in the customer studio, under the shared workspace:</p>
+            <a href="Schema overview.png" target="_blank">
+            <img src="Schema overview.png" alt="Audience screenshot" width="100%" />
+            </a>
+        <div class="sub-section">
+          <h3>Schema & Tables</h3>
+          <ul>
+            <li><strong>public.warby_demo_users</strong> // Parent model of users table </li>
+            <li><strong>public.completed_orders</strong> // Modeled as an Event, associated with users</li>
+            <li><strong>public.abandoned_carts</strong> // Modeled as an Event, associated with users</li>
+          </ul>
+        </div>
+
+        <div class="sub-section">
+          <h3>Modeling Decisions</h3>
+        <p>
+          After making the parent model, I decided to create two event models for 
+          both 'Completed Orders' and 'Abandoned Cart'.
+        </p>
+        <p>
+          I chose event modelling because after reviewing the two options:
+        </p>
+        <p>
+          <strong>Related Model</strong> — links additional user properties or 
+          attributes back to the parent model.
+        </p>
+        <p>
+          <strong>Event Model</strong> — tracks actions a user has taken 
+          over time, each with a timestamp.
+        </p>
+        <p>
+          Event Model fits the situation better since both Completed Orders and 
+          Abandoned Carts have timestamped user actions, and the audience 
+          filtering in Part 2 relies on event occurrence.
+        </p>
+            
+         </p>
+        </div>
+
+        <div class="sub-section">
+          <h3>Assumptions/Findings</h3>
+          <p> 
+            On my first attempt, when creating the parent model, I used the 'Table Selector' available via the UI, however the data returned wasn't formatted in a usable way.
+
+            I came across the following errors when trying to create the 'Completed Order' and 'Abandoned Cart' event models:
+        <br>
+          </br>
+                <a href="ErrorRelationship.png" target="_blank">
+                <img src="ErrorRelationship.png" alt="Audience screenshot" width="100%" />
+</a>
+            I then switched to using an SQL query to pull data from the tables directly, using the <Strong>AS</Strong> clause to make column names more readable and <Strong>CAST()</Strong> to convert string values to numeric where required.
+                  <p></p>
+                        <a href="SQL query.png" target="_blank">
+                      <img src="SQL query.png" alt="Audience screenshot" width="100%" />
+                        </a>
+
+            I repeated the same process for the event models as well. 
+          </p>
+        </div>
       </div>
     </section>
 
-    <section id="q2" class="card">
-      <div class="question-label">Question 2</div>
-      <h2>Question title goes here</h2>
+    <!-- Part 2 -->
+    <section id="part2" class="card">
+      <div class="question-label">Part 2</div>
+      <h2>Audience Creation</h2>
       <div class="answer">
-        <p>Your answer goes here.</p>
-        <pre><code>// Code example if needed
-function example() {
-  return "hello world";
+
+        <div class="sub-section">
+          <h3>Audience 1 — Lifetime Value &gt; $300</h3>
+          <p>Users with a lifetime value greater than $300.</p>
+          <div class="result-row">
+            <span class="result-label">User count</span>
+            <span class="result-badge">489 users</span>
+          </div>
+          <a href="Audience1.png" target="_blank">
+            <img src="Audience1.png" alt="Audience 1 screenshot" width="75%" style="margin-top: 1rem; border-radius: 8px;" />
+          </a>
+        </div>
+
+        <div class="sub-section">
+          <h3>Audience 2 — Abandoned Cart with Turquoise Frame</h3>
+          <p>Users who abandoned a cart containing a Turquoise frame.</p>
+          <div class="result-row">
+            <span class="result-label">User count</span>
+            <span class="result-badge">55 users</span>
+          </div>
+                    <a href="Audience2.png" target="_blank">
+            <img src="Audience2.png" alt="Audience 2 screenshot" width="75%" style="margin-top: 1rem; border-radius: 8px;" />
+          </a>
+        </div>
+
+        <div class="sub-section">
+          <h3>Audience 3 — LTV + 2021 Timestamp</h3>
+          <ul>
+            <li>Lifetime value greater than $250</li>
+            <li>Completed order event <strong>before</strong> August 1, 2021</li>
+            <li>Abandoned cart event <strong>after</strong> August 1, 2021</li>
+            <li>Did <strong>not</strong> complete an order after August 1, 2021</li>
+          </ul>
+          <div class="result-row">
+            <span class="result-label">User count</span>
+            <span class="result-badge"> 0 users</span>
+          </div>
+            <a href="Audience3.png" target="_blank">
+            <img src="Audience3.png" alt="Audience 3 screenshot" width="75%" style="margin-top: 1rem; border-radius: 8px;" />
+          </a>
+
+        </div>
+
+        <div class="sub-section">
+          <h3>Audience 4 — Female, Japanese, Repeat Abandoners / No Orders Completed</h3>
+          <ul>
+            <li>Identifies as female</li>
+            <li>Born after October 1, 1991</li>
+            <li>From Japan</li>
+            <li>Abandoned cart at least <strong>two times</strong></li>
+            <li><strong>Never</strong> completed an order</li>
+          </ul>
+          <div class="result-row">
+            <span class="result-label">User count</span>
+            <span class="result-badge"> 6 users</span>
+          </div>
+        </div>
+            <a href="Audience4.png" target="_blank">
+            <img src="Audience4.png" alt="Audience 4 screenshot" width="75%" style="margin-top: 1rem; border-radius: 8px;" />
+          </a>
+
+ <div class="sub-section">
+          <h3>Assumptions/Findings</h3>
+          <p> 
+            Once reading through the traits <a href="https://hightouch.com/docs/customer-studio/traits" target="_blank" rel="noopener">documentation</a> and viewing 
+            the customer studio overview video, I realised the best way to action LTV in an audience was to create a trait.
+
+
+            
+        <br>
+          </br>
+                    <a href="LTV Sum.png" target="_blank">
+                    <img src="LTV Sum.png" alt="Audience screenshot" width="100%" />
+                      </a> 
+             <p></p>
+            After that, the first two audiences I built were relatively straight forward, however, on the third audience I had to 
+            double check the 'Completed Order' event table directly to see if the timestamps varied from 5th of Feb 2022.
+                  <p></p>
+                        <a href="TimestampCheck1.png" target="_blank">
+                      <img src="TimestampCheck1.png" alt="Audience screenshot" width="100%" />
+                        </a>
+<p></p>
+<p></p>
+                           <a href="TimestampCheck2.png" target="_blank">
+                      <img src="TimestampCheck2.png" alt="Audience screenshot" width="100%" />
+                        </a>
+
+          Once confirming filter 2 on audience 3 would spin up 0, due to the dataset's limited timeframe, I proceeded with the rest of the filtering. 
+
+             <a href="Audience3Confirmation.png" target="_blank">
+                      <img src="Audience3Confirmation.png" alt="Audience screenshot" width="100%" />
+                        </a>
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Part 3 -->
+    <section id="part3" class="card">
+      <div class="question-label">Part 3</div>
+      <h2>Reasoning &amp; Expectations</h2>
+      <div class="answer">
+
+        <div class="sub-section">
+          <h3>Google Ads Sync Type</h3>
+          <p>If one or more audiences were synced to Google Ads, what sync type would you expect the customer to use, and why?</p>
+                  
+          <div class="sub-section"></div>
+          <p>Answer:</p>
+
+          <p><em>From my understanding, the supported sync types for Google Ads are Customer Match User List, Click Conversions, Click Conversion Adjustments, Call Conversions, and Offline Store Conversions. 
+            Since the use case here is syncing audiences like the ones I built in customer studio, the only sync type that applies is Customer Match User List.
+            The others are all for conversion tracking purposes, not audience activation.</em></p>
+<p></p>
+           <em> The docs also mention it can take 6 to 48 hours for a list to be populated after Hightouch sends the data to Google. </em>
+        </div>
+
+        <div class="sub-section">
+          <h3>Available User Identifiers for Google</h3>
+          <p>Which user identifiers would be available within the Customer Studio schema to sync downstream to Google?</p>
+
+          <div class="sub-section"></div>
+          <p>Answer:</p>
+
+          <p><em>The Google Ads Customer Match sync supports identifiers including;
+           <ul>
+            <li>Email</li>
+            <li>Phone</li>
+            <li>First Name</li>
+            <li>Last Name</li>
+            <li>Street Address</li>
+            <li>Country</li>
+            <li>Postal Code</li>
+            <li>State</li>
+            <li>City</li>
+            <li>Mobile Advertising ID</li>
+            <li>CRM ID</li>
+          </ul>
+            <p></p>
+            Within the dataset, the available identifiers are email, first name, last name, and country. 
+           <p></p> 
+           <p></p>
+            Just like segment currently, for many of our destinations, Hightouch automatically normalises and hashes PII fields like email and name before sending to Google, so no manual hashing is required.</em></p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Part 4 -->
+    <section id="part4" class="card">
+      <div class="question-label">Part 4</div>
+      <h2>Sync Creation — Poplar HTTP Integration</h2>
+      <div class="answer">
+
+        <div class="sub-section">
+          <h3>Integration Overview</h3>
+          <p>
+            As the task states, I went over to the poplar site and created a free account and obtained the API keys:
+
+                               <a href="poplarAPI.png" target="_blank">
+                      <img src="poplarAPI.png" alt="Audience screenshot" width="100%" />
+                        </a>
+
+
+            I created a HTTP Request Destination on the shared workspace:
+
+                   <a href="httpDestSetup.png" target="_blank">
+                      <img src="httpDestSetup.png" alt="Audience screenshot" width="100%" />
+                        </a>
+            
+            I tested the connection and it was successful.
+
+            As the doc's state, I went ahead and downloaded and set up postman. I've used this previously in troubleshooting customer's server side issues.
+                     <p></p>
+            The idea here is to test the connection before syncing the audience. 
+
+                               <a href="PostmanPost.png" target="_blank">
+                      <img src="PostmanPost.png" alt="Audience screenshot" width="100%" />
+                        </a>
+
+          This was successful! Indicated by the 201 response. 
+
+          This was also reflected in my poplar audience instance. 
+
+                                         <a href="poplarTest.png" target="_blank">
+                      <img src="poplarTest.png" alt="Audience screenshot" width="100%" />
+                        </a>
+
+                                <div class="sub-section"></div>
+          
+          <p>
+            Now that I have established the connection between my HTTP request destination and my Poplar audience instance. I went ahead and
+            started to complete the sync for audience 2 that I created in the previous section.
+          </p>
+
+
+          <p></p>
+
+          <p>
+            Below is a diagram of the flow from my understanding and screenshots to accompany it.
+
+          </p>
+
+          <!-- Pipeline Diagram -->
+          <div class="pipeline">
+            <div class="pipeline-node pipeline-node--blue">
+              <div class="pipeline-node-title">PostgreSQL</div>
+              <div class="pipeline-node-sub">warby_demo_users</div>
+            </div>
+            <div class="pipeline-arrow">→</div>
+            <div class="pipeline-node pipeline-node--purple">
+              <div class="pipeline-node-title">Audience #2</div>
+              <div class="pipeline-node-sub">Turquoise Frame users<br/>55 members</div>
+            </div>
+            <div class="pipeline-arrow">→</div>
+            <div class="pipeline-node pipeline-node--orange">
+              <div class="pipeline-node-title">HTTP Sync</div>
+              <div class="pipeline-node-sub">Rows added → POST<br/>Poplar destination</div>
+            </div>
+          </div>
+                  <p> Config Choices: </p>
+          <!-- Config details grid -->
+          <div class="pipeline-details">
+            <div class="pipeline-detail-card">
+              <div class="pipeline-detail-title">Trigger</div>
+              <p>Rows added only. The task requires adding new users, not update/delete</p>
+            </div>
+            <div class="pipeline-detail-card">
+              <div class="pipeline-detail-title">Batching</div>
+              <p>Single row. Poplar API accepts 1 user per POST, not an array</p>
+            </div>
+            <div class="pipeline-detail-card">
+              <div class="pipeline-detail-title">Error Handling</div>
+              <p>I chose retry immediately for better feedback. </p>
+            </div>
+            <div class="pipeline-detail-card">
+              <div class="pipeline-detail-title">Initial Sync</div>
+              <p>Backfill all rows. Send all 55 users on first run, not just new ones</p>
+            </div>
+          </div>
+              <p> Endpoint Used: </p>
+          <!-- Endpoint -->
+          <div class="pipeline-endpoint">
+            <span class="pipeline-method">POST</span>
+            <code>https://api.heypoplar.com/v1/audience/9a2e95fc-541a-4fca-b442-c99fae0130a6</code>
+          </div>
+
+          <!-- JSON Payload note -->
+          <div class="pipeline-payload">
+            <div class="pipeline-payload-title">JSON Payload</div>
+            <p>identifier → User ID &nbsp;·&nbsp; email → Email</p>
+            <p>Only Poplar-supported fields · no address data in demo dataset</p>
+          </div>
+
+
+
+          <!-- Screenshot gallery -->
+          <h3 style="margin-top: 2rem; margin-bottom: 1rem; font-size: 0.9rem; font-weight: 700; color: var(--text-primary);">Sync Configuration Screenshots</h3>
+          <div class="screenshot-gallery">
+            <a href="syncConfig1.png" target="_blank" class="screenshot-thumb">
+              <img src="syncConfig1.png" alt="Sync trigger config" />
+              <span>Trigger & Batching</span>
+            </a>
+            <a href="syncConfig2.png" target="_blank" class="screenshot-thumb">
+              <img src="syncConfig2.png" alt="Error handling config" />
+              <span>Error Handling & Initial Sync</span>
+            </a>
+            <a href="syncConfig3.png" target="_blank" class="screenshot-thumb">
+              <img src="syncConfig3.png" alt="Endpoint config" />
+              <span>Endpoint & Payload</span>
+            </a>
+            <a href="syncConfig4.png" target="_blank" class="screenshot-thumb">
+              <img src="syncConfig4.png" alt="JSON payload config" />
+              <span>JSON & Rate Limiting</span>
+            </a>
+          </div>
+
+          </p>
+        </div>
+
+        <div class="sub-section">
+
+          <p>
+            Once the config was completed, I ran the sync and eventually got it working. Both rows and users 
+            were reflected in Poplar. 
+
+          </p>
+
+                                         <a href="SyncCompleted.png" target="_blank">
+                      <img src="SyncCompleted.png" alt="Audience screenshot" width="100%" />
+                        </a>
+
+                                                       <a href="poplarsync complete.png" target="_blank">
+                      <img src="poplarsync complete.png" alt="Audience screenshot" width="100%" />
+                        </a>
+
+        <div class="sub-section">
+          <h3>Assumptions/Findings:</h3>
+          <p> I had two errors to fix on my first two attempts to complete the sync correctly. The first 
+            was to adjust the the HTTP headers. Originally I used the test API key from poplar without placing the word 'Bearer' in front of it.
+          <p></p>
+
+        This caused an error that was reported on the first sync: 
+
+         <p></p> 
+
+         <a href="error1.png" target="_blank">
+                      <img src="error1.png" alt="Audience screenshot" width="100%" />
+                        </a>
+          </p>
+
+          <p>
+I quickly fixed this and placed the production API key in along with the "Bearer" that was previously missing. 
+
+          </p>
+
+        <div class="sub-section"></div>
+
+        I then hit sync and came across another error: 
+
+                 <a href="error2.png" target="_blank">
+                      <img src="error2.png" alt="Audience screenshot" width="100%" />
+                        </a>
+<p></p>
+<p>I had the JSON config like this:</p>
+
+<pre><code>{
+  "identifier": "{{row['User ID']}}",
+  "email": "{{row['Email']}}",
+  "address": {
+    "name": "{{row['Full Name']}}",
+    "address_1": "",
+    "city": "",
+    "state": "",
+    "postal_code": ""
+  }
 }</code></pre>
+<p></p>
+<p>But Poplar doesn't accept empty fields. So I simplified the JSON to:</p>
+
+<pre><code>{
+  "identifier": "{{row['User ID']}}",
+  "email": "{{row['Email']}}"
+}</code></pre>
+
+<p>This then resulted in a successful sync on my next run.</p>
+
+        </div>
+
       </div>
     </section>
 
-    <section id="q3" class="card">
-      <div class="question-label">Question 3</div>
-      <h2>Question title goes here</h2>
+    <!-- ── WRITTEN SECTION ───────────────────────────────── -->
+    <div class="section-header">
+      <span class="section-header-label">Written Take-Home</span>
+    </div>
+
+    <!-- Written Q1 -->
+    <section id="wq1" class="card">
+      <div class="question-label">Written Q1</div>
+      <h2>INSUFFICIENT_ACCESS_OR_READONLY Error</h2>
       <div class="answer">
-        <p>Your answer goes here.</p>
+        <div class="customer-quote">
+          "Hey — I'm seeing this error: INSUFFICIENT_ACCESS_OR_READONLY. What do I do?"
+        </div>
+        <p>Hi there,</p>
+
+        <p>Peter here, one of the Success Engineers at Hightouch. Thank you for reaching out, I'd be happy to assist!</p>
+
+        <p>From my understanding of the <code>INSUFFICIENT_ACCESS_OR_READONLY</code> error, are you trying to sync data to your Salesforce destination? If so, this is likely related to your Salesforce credentials.</p>
+
+        <p>If you take a look at our documentation here: <a href="https://hightouch.com/docs/destinations/salesforce#common-errors" target="_blank" rel="noopener">hightouch.com/docs/destinations/salesforce#common-errors</a></p>
+
+        <p>Under that error code you can see the following:</p>
+
+        <div class="customer-quote">"Check that your Salesforce credentials have access and/or write access to the Salesforce object you are referencing in your sync."</div>
+
+        <a href="salesforce.png" target="_blank">
+          <img src="salesforce.png" alt="Salesforce error docs screenshot" width="100%" style="margin: 0.5rem 0 1rem; border-radius: 8px;" />
+        </a>
+
+        <p>This looks like a permissions issue, it means the Salesforce user account that Hightouch authenticated with doesn't have sufficient access to read or write to the object it's trying to sync. It's also worth quickly checking that the <strong>"View Setup and Configuration"</strong> permission is enabled on the user's profile in Salesforce under Administrative Permissions.</p>
+
+        <p>As a next step, are you able to re-authenticate the Salesforce destination in Hightouch using a Salesforce system administrator account, or an account that has the correct permissions?</p>
+
+        <p>If this issue isn't related to your Salesforce destination, please let me know where the error is showing up in your Hightouch workspace and what action you were attempting when it was triggered. Any screenshot would also be a great help!</p>
+
+        <p>Once I have that information, I'm happy to dig further into it for you. 😊</p>
+
+        <p>Kind regards,</p>
+
+   
+          <strong>Peter Cooper</strong><br/>
+          Customer Success Engineer, Hightouch
+        </div>
+      </div>
+    </section>
+
+    <!-- Written Q2 -->
+    <section id="wq2" class="card">
+      <div class="question-label">Written Q2</div>
+      <h2>Google Sheets Being Overwritten on Every Sync</h2>
+      <div class="answer">
+        <div class="customer-quote">
+          "I'm syncing to Google Sheets and I'm finding that with every sync my sheet is being overwritten. How do I stop that from happening?"
+        </div>
+        <p>Hi there,</p>
+
+        <p>Peter here, one of the Success Engineers at Hightouch. Thank you for reaching out, I'd be happy to assist!</p>
+
+        <p>It looks like what you're experiencing is expected behaviour based on your current sync mode. By default, the Google Sheets destination uses <strong>Mirror mode</strong>, which replaces the entire sheet's contents with the latest results from your model on every sync run. That's why you're seeing your data get overwritten each time.</p>
+
+        <p>The good news is there are two alternative modes you can switch to, depending on what you're trying to achieve:</p>
+
+        <ul>
+          <li><strong>Append mode</strong> — rows added to your model are appended to the sheet. Rows that are changed or removed in your model are ignored. This is a good option if you want to accumulate data over time without losing previous entries.</li>
+          <li><strong>Snapshot mode</strong> — instead of overwriting your existing sheet, Hightouch creates a new sheet tab on every sync run with the full results. This is useful if you want to keep a historical record of each sync.</li>
+        </ul>
+
+        <p>To change the sync mode, go to your sync configuration in Hightouch, edit the Google Sheets sync, and update the mode from <strong>Mirror</strong> to either <strong>Append</strong> or <strong>Snapshot</strong> depending on your needs.</p>
+
+        <p>You can find more detail on all three modes in our docs here: <a href="https://hightouch.com/docs/destinations/google-sheets" target="_blank" rel="noopener">hightouch.com/docs/destinations/google-sheets</a></p>
+
+        <p>Let me know if you have any questions or if you'd like a hand figuring out which mode best fits your use case.</p>
+
+        <div class="email-signature">
+          <strong>Peter Cooper</strong><br/>
+          Customer Success Engineer, Hightouch
+        </div>
+      </div>
+    </section>
+
+    <!-- Written Q3 -->
+    <section id="wq3" class="card">
+      <div class="question-label">Written Q3</div>
+      <h2>Duplicate Primary Key Error</h2>
+      <div class="answer">
+        <div class="customer-quote">
+          "I'm seeing a duplicate primary key error for my sync. Why do I need a unique primary key? I don't have a field that is unique."
+        </div>
+
+        <p>Hi there,</p>
+
+        <p>Peter here, one of the Success Engineers at Hightouch. Thank you for reaching out, I'd be happy to assist!</p>
+
+        <p>I understand that you're looking to find out why Hightouch requires users to have a unique primary key and what to do if you don't have a unique field set up in your dataset.</p>
+
+        <p>If we take a look at the image below:</p>
+
+        <a href="primary.png" target="_blank">
+          <img src="primary.png" alt="Primary key example screenshot" width="100%" style="margin: 0.5rem 0 1rem; border-radius: 8px;" />
+        </a>
+
+        <p>We can see the primary key is set as email address. Hightouch's sync engine relies on unique primary keys to detect when rows are added, changed, or removed in a data model.</p>
+
+        <p>From the image we can see that there are two matching/duplicate emails. As a safeguard to prevent duplicate records from reaching your destination, Hightouch will automatically filter out rows with non-unique primary keys.</p>
+
+        <p>You can read more about unique primary key requirements here: <a href="https://hightouch.com/docs/models/creating-models#unique-primary-key-requirement" target="_blank" rel="noopener">hightouch.com/docs/models/creating-models#unique-primary-key-requirement</a></p>
+
+        <p>Now, having said that, you mention in your support request that you truly don't have a field that is unique. If your dataset doesn't inherently include any unique columns, you can use SQL to either:</p>
+
+        <ul>
+          <li><strong>Filter out duplicate rows</strong> — if you're not concerned about losing data from one or more of the duplicated rows. <a href="https://hightouch.com/docs/models/sql-editor#filter-out-duplicates" target="_blank" rel="noopener">View docs</a></li>
+          <li><strong>Create a composite column</strong> to use for your primary key. <a href="https://hightouch.com/docs/models/sql-editor#composite-primary-keys" target="_blank" rel="noopener">View docs</a></li>
+        </ul>
+
+        <p>Please note that if you alter a model's primary key by selecting a different column, you will be prompted to perform a full sync or reset the change data capture for all syncs that depend on that model. Be careful when modifying primary keys. If you keep the same column name but alter the way its values are calculated, some records may be added or deleted in your destination, depending on how your sync is configured.</p>
+
+        <p>If you would like me to assist you with any of the above for your dataset, please let me know.</p>
+
+        <div class="email-signature">
+          <strong>Peter Cooper</strong><br/>
+          Customer Success Engineer, Hightouch
+        </div>
+      </div>
+    </section>
+
+    <!-- Written Q4 -->
+    <section id="wq4" class="card">
+      <div class="question-label">Written Q4</div>
+      <h2>Related Model Columns Not Appearing in Sync Config</h2>
+      <div class="answer">
+        <div class="customer-quote">
+          "Hi! I'm setting up a Customer Studio audience and a sync, and the columns from my related model aren't appearing in the sync configuration. Am I doing something wrong?"
+        </div>
+        <p>Hi there,</p>
+
+        <p>Peter here from the Hightouch Customer Success team, happy to help!</p>
+
+        <p>You're not doing anything wrong. This is actually by design in Customer Studio. When you sync an audience to a destination, 
+          only columns from the parent model are available in the sync configuration. 
+          Related model and event model columns are used for filtering and building your audience, 
+          but they aren't directly surfaced as fields you can map in the sync itself.</p>
+
+        <p>There are two ways to get related model data into your sync:</p>
+
+        <ul>
+          <li><strong>Option 1 — Use the Merge columns feature.</strong> This lets you pull columns from your parent model into a related or event model so they're available for filtering — but more relevantly, you can also merge related model columns onto the parent model. To set this up, go to <strong>Customer Studio → Schema → open your related model → Relationships tab → enable Merge columns</strong>. Once merged, those fields will appear as read-only columns on the parent model and will be available in your sync configuration.</li>
+          <li><strong>Option 2 — Create a Trait.</strong> If you want to compute a value from a related model (for example, total spend from a Purchases table) and sync it to a destination, you can create a trait on the parent model that aggregates data from the related model. Traits defined on the parent model are synced just like any other column.</li>
+        </ul>
+
+        <p>You can find more detail on both approaches in our docs here:</p>
+        <ul>
+          <li><a href="https://hightouch.com/docs/customer-studio/schema" target="_blank" rel="noopener">hightouch.com/docs/customer-studio/schema</a></li>
+          <li><a href="https://hightouch.com/docs/customer-studio/traits" target="_blank" rel="noopener">hightouch.com/docs/customer-studio/traits</a></li>
+        </ul>
+
+        <p>Let me know if you'd like a hand figuring out which approach best fits your use case!</p>
+
+        <div class="email-signature">
+          <strong>Peter Cooper</strong><br/>
+          Customer Success Engineer, Hightouch
+        </div>
       </div>
     </section>
 
@@ -74,11 +668,25 @@ function example() {
 
   <footer>
     <div class="footer-inner">
-      <svg width="22" height="20" viewBox="0 0 40 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:0.5">
-        <rect x="14" y="0" width="26" height="26" rx="3" fill="#5ecf8e"/>
-        <rect x="0" y="18" width="16" height="16" rx="2" fill="#1a1a1a"/>
-      </svg>
-      <span>Peter Cooper &mdash; Takehome Assessment</span>
+      <div class="footer-brand">
+        <svg width="22" height="20" viewBox="0 0 40 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:0.5">
+          <rect x="14" y="0" width="26" height="26" rx="3" fill="#5ecf8e"/>
+          <rect x="0" y="18" width="16" height="16" rx="2" fill="#1a1a1a"/>
+        </svg>
+        <span>Peter Cooper &mdash; Takehome Assessment</span>
+      </div>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/peter-s-cooper/" target="_blank" rel="noopener" class="footer-linkedin">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="24" height="24" rx="5" fill="#0A66C2"/>
+            <path d="M7.5 9.5H5V19H7.5V9.5Z" fill="white"/>
+            <circle cx="6.25" cy="6.75" r="1.5" fill="white"/>
+            <path d="M19 19h-2.5v-4.75c0-1.15-.85-2-1.9-2-1.1 0-1.85.9-1.85 2V19H10.25V9.5H12.5v1.1c.55-.85 1.6-1.4 2.7-1.4 2.1 0 3.8 1.7 3.8 3.85V19z" fill="white"/>
+          </svg>
+          LinkedIn
+        </a>
+        <a href="peter-cooper-cv.pdf" download class="footer-cv-link">Download CV</a>
+      </div>
     </div>
   </footer>
 
